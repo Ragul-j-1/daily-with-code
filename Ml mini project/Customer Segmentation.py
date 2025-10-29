@@ -4,7 +4,7 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 
 
-df = pd.read_csv("Mall_Customers.csv")
+df = pd.read_csv(r"D:\mater ai\Ml mini project\Datasets\Mall_Customers.csv")
 
 
 x = df[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']]

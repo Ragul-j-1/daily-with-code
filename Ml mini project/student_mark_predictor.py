@@ -2,7 +2,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error,r2_score
 import pandas as pd
 import numpy as np
-df=pd.read_csv("score.csv")
+df=pd.read_csv(r"D:\mater ai\Ml mini project\Datasets\score.csv")
 x=df[['Hours']]
 y=df['Scores']
 

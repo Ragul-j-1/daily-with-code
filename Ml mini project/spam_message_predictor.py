@@ -8,7 +8,7 @@ import string
 nltk.download('wordnet')
 """
 
-df = pd.read_csv("spam.csv",encoding='latin1')
+df = pd.read_csv(r"D:\mater ai\Ml mini project\Datasets\spam.csv",encoding='latin1')
 lem=WordNetLemmatizer()
 
 def preprocessing_text(text):

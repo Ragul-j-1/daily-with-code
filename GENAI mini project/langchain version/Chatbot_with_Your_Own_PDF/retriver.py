@@ -1,11 +1,25 @@
-from langgraph.prebuilt import chat_agent_executor
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 
+def retriver(vectorstore, llm):
+    retriever = vectorstore.as_retriever()
 
+    prompt = ChatPromptTemplate.from_template(
+        """Answer the question using the context below.
+        Context: {context}
+        Question: {question}
+        """
+    )
 
-def retriver(vectorstore,llm):
-    qa_chain=chat_agent_executor(
-        llm=llm,
-        retriever=vectorstore.as_retriever(),
-        return_source_documents=True
-)
-    return qa_chain
+    chain = (
+        {
+            "context": retriever,
+            "question": RunnablePassthrough()
+        }
+        | prompt
+        | llm
+        | StrOutputParser()
+    )
+
+    return chain

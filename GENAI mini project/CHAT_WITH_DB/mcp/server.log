@@ -1,0 +1,49 @@
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Tool called: list_databases in C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Tool called: list_tables for inventory.db
+Result for inventory.db: []
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Tool called: list_tables for store.db
+Result for store.db: []
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Tool called: list_tables for products.db
+Result for products.db: []
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Tool called: list_tables for shop.db
+Result for shop.db: []
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Tool called: list_tables for inventory.sqlite
+Result for inventory.sqlite: []
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Tool called: list_tables for data.db
+Result for data.db: []
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1\temp_db_test
+Tool called: list_tables for store_inventory.db
+Result for store_inventory.db: []
+Server starting via mcp.run() with DB_DIRECTORY=C:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_databases in C:\Users\acer\OneDrive - ELCOT\mcp 1
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_databases in c:\Users\acer\OneDrive - ELCOT\mcp 1
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_tables for chat_history.db
+Result for chat_history.db: [{'table': 'message_store', 'columns': ['id', 'session_id', 'message']}]
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_tables for one_piece.db
+Result for one_piece.db: [{'table': 'RED_HAIR_PIRATES', 'columns': ['NAME', 'AGE', 'POSITION']}, {'table': 'STRAW_HATS', 'columns': ['NAME', 'AGE', 'POSITION']}]
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_databases in c:\Users\acer\OneDrive - ELCOT\mcp 1
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_tables for chat_history.db
+Result for chat_history.db: [{'table': 'message_store', 'columns': ['id', 'session_id', 'message']}]
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_tables for one_piece.db
+Result for one_piece.db: [{'table': 'RED_HAIR_PIRATES', 'columns': ['NAME', 'AGE', 'POSITION']}, {'table': 'STRAW_HATS', 'columns': ['NAME', 'AGE', 'POSITION']}]
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_databases in c:\Users\acer\OneDrive - ELCOT\mcp 1
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_tables for chat_history.db
+Result for chat_history.db: [{'table': 'message_store', 'columns': ['id', 'session_id', 'message']}]
+Server starting via mcp.run() with DB_DIRECTORY=c:\Users\acer\OneDrive - ELCOT\mcp 1
+Tool called: list_tables for one_piece.db
+Result for one_piece.db: [{'table': 'RED_HAIR_PIRATES', 'columns': ['NAME', 'AGE', 'POSITION']}, {'table': 'STRAW_HATS', 'columns': ['NAME', 'AGE', 'POSITION']}]

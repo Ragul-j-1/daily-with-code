@@ -74,8 +74,11 @@ def run_sql(database_name: str, query: str):
         log(f"SQL Result: {result}")
         return result
     except Exception as e:
-        log(f"Error in run_sql on {database_name}: {e}")
-        return f"Error: {str(e)}"
+        err_msg = str(e)
+        if "no such column: video_filename" in err_msg.lower():
+            err_msg += " (Hint: The correct column name for video files is 'video_name', not 'video_filename'.)"
+        log(f"Error in run_sql on {database_name}: {err_msg}")
+        return f"Error: {err_msg}"
 
 @mcp.tool()
 def detect_objects_in_video(video_filename: str) -> str:

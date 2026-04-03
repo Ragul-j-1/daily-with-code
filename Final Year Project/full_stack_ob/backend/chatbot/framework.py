@@ -52,8 +52,9 @@ class DatabaseChatbot:
             "CRITICAL KNOWLEDGE:\n"
             "1. To answer 'what happened' or get a 'summary', use the 'GetVideoReportTool'. It provides technical metadata (FPS, duration) and a behavioral timeline of distinct objects.\n"
             "2. To answer specific questions about individual objects (e.g., 'how many divers'), use 'SELECT COUNT(DISTINCT object_label)' in the 'detections' table.\n"
-            "3. The 'video_metadata' table contains FPS and Total Frames. User seconds = frame_number / FPS.\n"
-            "4. The 'video_events' table summarizes behavior: it shows when an object first appeared, when it left, and its dominant activity (e.g., 'fast movement').\n\n"
+            "3. IMPORTANT SCHEMA: The column for video filenames is ALWAYS 'video_name' (NOT 'video_filename') in all tables: 'detections', 'video_metadata', 'video_events', and 'video_environments'.\n"
+            "4. The 'video_metadata' table contains FPS and Total Frames. User seconds = frame_number / FPS.\n"
+            "5. The 'video_events' table summarizes behavior: it shows when an object first appeared, when it left, and its dominant activity (e.g., 'fast movement').\n\n"
             f"Available Databases: {', '.join(self.databases) if self.databases else 'None discovered yet'}\n"
         )
         

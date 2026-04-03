@@ -5,8 +5,8 @@ import sqlite3
 import threading
 import glob
 
-from fastapi import FastAPI, HTTPException, UploadFile, File
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi import FastAPI, HTTPException, UploadFile, File, Request, Response
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -114,6 +114,10 @@ def api_status():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    return Response(status_code=204)
 
 
 # ══════════════════════════════════════════════════════════
@@ -337,22 +341,69 @@ async def chat(request: ChatRequest):
 
 
 # ══════════════════════════════════════════════════════════
-#  7. GET /output-video — Serve detected output video
+#  7. GET /output-video — Serve detected output video (Robust Streamer)
 # ══════════════════════════════════════════════════════════
 @app.get("/output-video")
-def get_output_video():
-    """Serve the most recent detected output video."""
-    # Find any detected_* file in output_video/
+async def get_output_video(request: Request):
+    """Serve the most recent detected output video with robust range support."""
     output_files = glob.glob(os.path.join(OUTPUT_DIR, "detected_*"))
     if not output_files:
         raise HTTPException(404, "No output video found — run detection first")
 
-    # Return the most recent one
+    # Get the most recent one
     latest = max(output_files, key=os.path.getmtime)
-    return FileResponse(
-        latest,
-        media_type="video/mp4",
-        headers={"Accept-Ranges": "bytes"},
+    file_size = os.path.getsize(latest)
+    
+    # ── Handle Range header manually for better Windows/Proactor stability ──
+    range_header = request.headers.get("Range")
+    start, end = 0, file_size - 1
+    status_code = 200
+
+    if range_header and "bytes=" in range_header:
+        try:
+            status_code = 206
+            h = range_header.replace("bytes=", "").split("-")
+            start = int(h[0])
+            if len(h) > 1 and h[1]:
+                end = int(h[1])
+        except (ValueError, IndexError):
+            pass
+
+    # Ensure bounds
+    start = max(0, min(start, file_size - 1))
+    end = max(start, min(end, file_size - 1))
+    content_length = end - start + 1
+
+    def get_video_chunks():
+        """Generator that catches disconnects to prevent log spam."""
+        try:
+            with open(latest, "rb") as f:
+                f.seek(start)
+                remaining = content_length
+                while remaining > 0:
+                    chunk_size = min(1024 * 1024, remaining)  # 1MB chunks
+                    data = f.read(chunk_size)
+                    if not data:
+                        break
+                    yield data
+                    remaining -= len(data)
+        except (ConnectionResetError, BrokenPipeError):
+            # Client disconnected abruptly (common on Windows) — exit silently
+            return
+        except Exception as e:
+            # Other errors can still be logged if needed
+            print(f"⚠️  Streaming error: {e}")
+            return
+
+    return StreamingResponse(
+        get_video_chunks(),
+        status_code=status_code,
+        headers={
+            "Content-Range": f"bytes {start}-{end}/{file_size}",
+            "Accept-Ranges": "bytes",
+            "Content-Length": str(content_length),
+            "Content-Type": "video/mp4",
+        },
     )
 
 

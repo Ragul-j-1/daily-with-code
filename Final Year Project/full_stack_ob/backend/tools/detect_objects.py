@@ -3,6 +3,7 @@ import sqlite3
 import math
 import os
 import sys
+import subprocess
 from ultralytics import YOLO
 from collections import Counter
 import imageio
@@ -120,10 +121,22 @@ def run_detection(video_name: str = "video.mp4", db_directory: str = None) -> st
         using_imageio = True
         log(f"Streaming output to {OUTPUT_VIDEO_PATH} using H.264 (imageio)")
     except Exception as e:
-        log(f"Warning: imageio codec failed ({e}). Falling back to OpenCV mp4v.")
-        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-        out = cv2.VideoWriter(OUTPUT_VIDEO_PATH, fourcc, fps, (width, height))
-        using_imageio = False
+        log(f"Warning: imageio codec failed ({e}). Attempting FFmpeg fallback...")
+        try:
+            # Fallback to FFmpeg process if imageio fails
+            # We'll write to a pipe if we wanted to be fancy, but simpler is to use OpenCV and then transcode
+            # OR just use OpenCV for now and let the user know. 
+            # Actually, let's try to use a more compatible FourCC if possible.
+            fourcc = cv2.VideoWriter_fourcc(*"avc1") # Try avc1 (H.264)
+            out = cv2.VideoWriter(OUTPUT_VIDEO_PATH, fourcc, fps, (width, height))
+            if not out.isOpened():
+                fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+                out = cv2.VideoWriter(OUTPUT_VIDEO_PATH, fourcc, fps, (width, height))
+            using_imageio = False
+        except:
+            using_imageio = False
+            fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+            out = cv2.VideoWriter(OUTPUT_VIDEO_PATH, fourcc, fps, (width, height))
 
     # -----------------------------
     # Tracking & Processing

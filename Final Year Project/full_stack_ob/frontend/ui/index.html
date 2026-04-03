@@ -768,9 +768,19 @@ async function onDetectDone(data){
   outVid.src = outputUrl;
   outVid.load();
   
+  let retries = 0;
   outVid.onerror = () => {
-    outErr.style.display = 'flex';
-    console.error('Detection video playback error');
+    if (retries < 1) {
+      retries++;
+      console.warn('Video load failed, retrying once...');
+      setTimeout(() => {
+        outVid.src = `${API}/output-video?t=${Date.now()}`;
+        outVid.load();
+      }, 500);
+    } else {
+      outErr.style.display = 'flex';
+      console.error('Detection video playback error after retry');
+    }
   };
 
   document.getElementById('downloadBtn').href = outputUrl;

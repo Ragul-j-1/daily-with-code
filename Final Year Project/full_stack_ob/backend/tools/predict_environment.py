@@ -63,6 +63,20 @@ def predict_environment(objects: list) -> str:
         response = llm.invoke([HumanMessage(content=prompt)])
         return response.content.strip()
     except Exception as e:
+        # Check if it's a connection error (WinError 10061 or similar)
+        err_str = str(e).lower()
+        if "connection" in err_str or "refused" in err_str or "10061" in err_str:
+            log(f"⚠️  Ollama unreachable (WinError 10061). Using heuristic fallback...")
+            # Heuristic keyword matching
+            obj_str = " ".join(objects).lower()
+            if any(k in obj_str for k in ["fish", "jellyfish", "shark", "ray", "diver", "coral", "seaweed", "shipwreck", "unidentified creature"]):
+                return "Marine Environment"
+            if any(k in obj_str for k in ["boat", "ship", "vessel", "harbor", "pier", "surfer"]):
+                return "Coastal / Surface"
+            if any(k in obj_str for k in ["sand", "beach", "crab", "shell"]):
+                return "Beach / Shoreline"
+            return "Marine (Heuristic)"
+            
         log(f"Error predicting environment: {e}")
         return "Prediction Failed"
 

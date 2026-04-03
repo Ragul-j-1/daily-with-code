@@ -1,0 +1,29 @@
+# Core LLM + LangChain
+langchain
+langchain-core
+langchain-community
+langgraph
+
+# Ollama LLM
+langchain-ollama
+
+# MCP (Model Context Protocol)
+mcp
+
+# Web Scraping
+requests
+beautifulsoup4
+
+# Database
+sqlalchemy
+
+# Environment variables
+python-dotenv
+
+# (Optional – for future RAG support)
+# chromadb
+# sentence-transformers
+
+# Utilities
+pydantic
+typing-extensions

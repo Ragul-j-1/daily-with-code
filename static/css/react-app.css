@@ -1,0 +1,377 @@
+:root {
+    color-scheme: light;
+    --bg: #f4f6f8;
+    --panel: #ffffff;
+    --ink: #20242a;
+    --muted: #69727d;
+    --line: #dfe5eb;
+    --accent: #d75d4c;
+    --accent-dark: #b84335;
+    --accent-soft: #f8dfdc;
+    --done: #3d8c72;
+    --shadow: 0 20px 45px rgba(30, 37, 45, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        linear-gradient(135deg, rgba(215, 93, 76, 0.14), transparent 28%),
+        linear-gradient(315deg, rgba(61, 140, 114, 0.12), transparent 26%),
+        var(--bg);
+    color: var(--ink);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+.app {
+    width: min(960px, calc(100vw - 28px));
+    margin: 36px auto;
+}
+
+.auth-layout {
+    min-height: calc(100vh - 72px);
+    display: grid;
+    place-items: center;
+}
+
+.auth-card,
+.task-shell,
+.form-shell,
+.confirm-shell {
+    background: var(--panel);
+    border: 1px solid rgba(32, 36, 42, 0.08);
+    box-shadow: var(--shadow);
+}
+
+.auth-card {
+    width: min(420px, 100%);
+    padding: 34px;
+    border-radius: 8px;
+}
+
+.auth-card h1,
+.form-shell h1,
+.confirm-shell h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+    letter-spacing: 0;
+}
+
+.muted {
+    color: var(--muted);
+    margin: 0 0 26px;
+}
+
+.field {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.field label {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.field input,
+.field textarea,
+.search-input {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 13px;
+    color: var(--ink);
+    background: #fff;
+    outline: none;
+}
+
+.field textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.primary-btn,
+.ghost-btn,
+.danger-btn,
+.icon-btn {
+    min-height: 42px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform 140ms ease, background 140ms ease, color 140ms ease;
+}
+
+.primary-btn {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+}
+
+.primary-btn:hover,
+.danger-btn:hover,
+.icon-btn:hover {
+    transform: translateY(-1px);
+}
+
+.primary-btn:hover,
+.icon-btn:hover {
+    background: var(--accent-dark);
+}
+
+.ghost-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0 16px;
+}
+
+.ghost-btn:hover {
+    background: var(--accent-soft);
+}
+
+.danger-btn {
+    background: var(--accent);
+    color: white;
+    padding: 0 22px;
+}
+
+.icon-btn {
+    width: 46px;
+    height: 46px;
+    display: inline-grid;
+    place-items: center;
+    background: var(--accent);
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+}
+
+.link-btn {
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0;
+}
+
+.error {
+    min-height: 20px;
+    color: var(--accent-dark);
+    font-size: 14px;
+    margin: 8px 0 0;
+}
+
+.switch-copy {
+    margin: 20px 0 0;
+    color: var(--muted);
+    text-align: center;
+}
+
+.task-shell {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.topbar {
+    min-height: 170px;
+    padding: 28px;
+    background: linear-gradient(135deg, #d75d4c, #9f635b);
+    color: #fff;
+}
+
+.topbar-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout-btn {
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.topbar h1 {
+    margin: 24px 0 10px;
+    font-size: clamp(30px, 5vw, 46px);
+    letter-spacing: 0;
+}
+
+.topbar p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.topbar i {
+    font-style: normal;
+    font-weight: 800;
+}
+
+.toolbar {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    padding: 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+.task-list {
+    min-height: 180px;
+}
+
+.task-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: center;
+    min-height: 70px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.status-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: #d8dde3;
+}
+
+.status-dot.done {
+    background: var(--done);
+}
+
+.task-title {
+    text-align: left;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 4px 0;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.task-title.done {
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+.delete-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.delete-btn:hover {
+    background: var(--accent-soft);
+}
+
+.empty-state {
+    min-height: 180px;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    text-align: center;
+    padding: 28px;
+}
+
+.form-shell,
+.confirm-shell {
+    width: min(620px, 100%);
+    margin: 0 auto;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0 22px;
+    font-weight: 700;
+}
+
+.checkbox-row input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+}
+
+.confirm-title {
+    padding: 14px;
+    background: var(--accent-soft);
+    border-radius: 6px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+    .app {
+        width: min(100vw - 18px, 960px);
+        margin: 9px auto;
+    }
+
+    .auth-layout {
+        min-height: calc(100vh - 18px);
+    }
+
+    .auth-card,
+    .form-shell,
+    .confirm-shell {
+        padding: 22px;
+    }
+
+    .toolbar {
+        grid-template-columns: 1fr auto;
+    }
+
+    .toolbar .ghost-btn {
+        display: none;
+    }
+}

@@ -1,0 +1,103 @@
+ 
+        body{
+            background:#f5f5f5;
+            font-family:'Lucida Sans Regular' ;
+        }
+
+        .container{
+            width:700px;
+            margin:50px auto;
+            background:white;
+            box-shadow:0px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header{
+            background:#e2594a9a;
+            color:white;
+            padding:20px;
+            height:150px;
+            font-family:'Lucida Sans Regular' ;
+        }
+
+        .logout{
+            float:right;
+            color:white;
+            text-decoration:none;
+        }
+
+        .search-section{
+            display:flex;
+            align-items:center;
+            padding:20px;
+            border-bottom:1px solid #ddd;
+            
+        }
+
+        .search-section input{
+            width:250px;
+            padding:10px;
+            border:1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-section button{
+            padding:10px 20px;
+            margin-left:5px;
+            border:1px solid #ea7f74;
+            background:white;
+            color:#ea7f74;
+            cursor:pointer;
+            border-radius: 4px;
+        }
+
+        .plus{
+            margin-left:auto;
+            font-size:40px;
+            color:#ea7f74;
+            cursor:pointer;
+        }
+
+        .task{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:20px;
+            border-bottom:1px solid #ddd;
+        }
+
+        .left{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .circle{
+            width:20px;
+            height:20px;
+            border-radius:50%;
+            background:#d9d9d9;
+        }
+        .circle1{
+            width:20px;
+            height:20px;
+            border-radius:50%;
+            background:#d48b8b;
+        }
+
+        .completed{
+            background:green;
+        }
+
+        .done{
+            text-decoration:line-through;
+            color:gray;
+        }
+
+        .delete{
+            color:#ea7f74;
+            font-size:25px;
+            cursor:pointer;
+        }
+        .clicktask{
+            cursor:pointer;
+        }

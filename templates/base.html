@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block document %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <div class="container">
+         <div class="header"
+              onclick="window.location.href='dash-{{id}}'">
+              &leftarrow;Back
+    </div >
+        <form class="form" action="{% block action %}{%endblock%}" method="POST">
+            {% csrf_token %} <br><br>
+            <label for="">Title:</label><br>
+            <input class="input"  type="text" maxlength="20" name="title" value='{{ task.Title }}'><br><br>
+            <label for="">Description:</label><br>
+            <textarea gccols="30" rows="10" name="desc"></textarea><br>
+            <p>Complete: <br><input  type="checkbox" name="completed" {% if task.completed %}checked{% endif %}><br><br></p>
+            
+            <input class="submit" type="submit" value="Submit">
+
+        </form>
+        </div>
+</body>
+</html>

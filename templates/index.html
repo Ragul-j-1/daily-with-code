@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        body{
+    background-image: linear-gradient(to bottom right,white, rgb(236, 221, 232) 25% ,rgb(172, 127, 149),rgb(184, 171, 181),rgb(201, 186, 198),rgb(252, 249, 250));
+    background-repeat: no-repeat;
+    height: 575px;
+}
+    </style>
+</head>
+<body>
+        <div class="container">
+        <div id="header">Login</div>
+        <form action="dashboard" method="POST">
+            {% csrf_token%} <br><br><br>
+            <div class="form">
+              <label for="">Username:</label><br>
+              <input class="input" type="text" name="username">
+              <p>{{ error }}</p><br>
+              <label for="">Password:</label><br>
+              <input class="input" type="password" name="password">
+              <p>{{ error1}}</p>
+              
+              <input class="submit" type="submit" value="Login"><br>
+        </form>
+        <p>Don't have an account? <a href="register">Register</a></p>
+        </div>
+        </div>
+
+</body>
+</html>

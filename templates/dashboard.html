@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+   <link rel="stylesheet" href="{% static 'css/tasklist.css' %}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <a href="login" class="logout">Logout</a>
+
+        <h1>Hello {{id.Username}},</h1>
+
+        <h3>You have <i>{{ count }}</i> incomplete tasks</h3>
+    </div>
+
+    <div class="search-section">
+        <input type="text" id="searchBox"
+               placeholder="Search Task..."
+               onkeyup="searchName()">
+
+        <button>Search</button>
+
+        <span class="plus"
+              onclick="window.location.href='createtask-{{id.id}}'">
+              +
+        </span>
+    </div>
+    {% for title in task %}
+        <div id="taskList">
+        <div class="task">
+            <div class="left">
+    {% if title.completed == 1 %}
+    <div class="circle1"></div>
+        <span class="clicktask" onclick="window.location.href='update-{{ title.id }}'">
+            <del><i>{{ title.Title }}</i></del>
+        </span>
+        
+    {% else %}
+        <div class="circle"></div>
+        <span class="clicktask" onclick="window.location.href='update-{{ title.id }}'">
+            {{ title.Title }}
+        </span>
+    {% endif %}
+            </div>
+            <span class="delete" onclick="window.location.href='delpage-{{title.id}}'">×</span>
+        </div>
+    {% endfor %}
+    
+
+</div>
+
+<script>
+function searchName() {
+    let input = document.getElementById("searchBox")
+                        .value.toLowerCase();
+
+    let tasks = document.querySelectorAll(".task");
+
+    tasks.forEach(task => {
+        let text = task.innerText.toLowerCase();
+
+        if(text.includes(input)){
+            task.style.display="flex";
+        }else{
+            task.style.display="none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
